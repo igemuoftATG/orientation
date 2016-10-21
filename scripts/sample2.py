@@ -33,7 +33,7 @@ scorefxn.set_weight(ref, 1)
 scorefxn.set_weight(fa_dun, 0.56)
 
 #set up simulation parameters
-ncycles = 25000
+ncycles = 60000
 kT = 1.0
 mc = MonteCarlo(p, scorefxn, kT)
 
