@@ -6,9 +6,15 @@ from random import *
 
 p = Pose()
 
+#read fasta file for sequence
+with open("../fasta/1LGL_fasta.txt",'r') as fasta:
+    sequence = fasta.readlines()[1].strip()
+    
+print sequence
+
 #making an initial pose with A chain of CueR
 make_pose_from_sequence(p, 
-"RPTDIKCSESYQCFPVCKSRFGKTNGRCVNGFCDCF","centroid")
+sequence,"centroid")
 
 #Checking initial phi, psi angle
 for i in range(1, p.total_residue() + 1):
