@@ -5,7 +5,7 @@ from random import *
 
 # Creating a pose object which stores all the residues and their phi and psi angles
 p = Pose()
-start = pose_from_pdb(“../models/1LGL.pdb")
+start = pose_from_pdb("../models/1LGL.pdb")
 p.assign(start)
 
 #read fasta file for sequence
@@ -35,13 +35,19 @@ scorefxn.set_weight(ref, 1)
 scorefxn.set_weight(fa_dun, 0.56)
 
 #set up simulation parameters
-ncycles = 60000
+ncycles = 6000
 kT = 1.0
 mc = MonteCarlo(p, scorefxn, kT)
+n_moves = 10
 
-#set up Mover
+#set up Movemap
 movemap = MoveMap()
 movemap.set_bb(True)
+
+#smallmover, shearmover and minmover
+small_mover = SmallMover(movemap, kT, n_moves)
+shear_mover = ShearMover(movemap, kT, n_moves)
+min_mover = MinMover()
 
 # sequence mover mover
 seq_mover = SequenceMover()
@@ -49,7 +55,6 @@ seq_mover.add_mover(small_mover)
 seq_mover.add_mover(shear_mover)
 seq_mover.add_mover(min_mover)
 
-frag_mover = SmoothFragmentMover(fragset, movemap, cost)
 
 #runing simulation through monte carlo
 for i in range(1, ncycles):
