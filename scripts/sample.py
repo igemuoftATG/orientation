@@ -36,8 +36,8 @@ movemap = MoveMap()
 movemap.set_bb(True)
 
 # fragment mover
-fragset = ConstantLengthFragSet(3)
-fragset.read_fragment_file("../fraglibs/1LGL_3.txt")
+fragset = ConstantLengthFragSet(9)
+fragset.read_fragment_file("../fraglibs/1LGL_9.txt")
 cost = GunnCost()
 
 frag_mover = SmoothFragmentMover(fragset, movemap, cost)
